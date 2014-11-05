@@ -1,0 +1,31 @@
+{% extends "base_site.html" %}
+
+
+{% block content %}
+
+{%for article in articles %}
+<div class="article_list">
+    <a class="article_list_link" href="/aktualnosci/{{ article.name }} ">
+
+        <img class="article_list_image" src="/media/{{ article.image }}" />
+
+        <div class="article_list_text">
+            <h3>{{ article.header }}</h3>
+            <p>{{article.content|removetags:"p div span img strong"|slice:":255"}} ...</p>
+        </div>
+
+    </a>
+</div>
+{% endfor %}
+
+<div class="gallery_navigation">
+{% if show_previous %}
+    <a href="/aktualnosci/strony={{ previous_page }}"> << poprzedni </a>
+{% endif %}
+| strona {{ page_number }} |
+{% if show_next %}
+    <a href="/aktualnosci/strony={{ next_page }}"> następny >>  </a>
+{% endif %}
+</div>
+
+{% endblock %}

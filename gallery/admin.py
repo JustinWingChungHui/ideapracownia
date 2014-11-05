@@ -8,7 +8,7 @@ class PhotoAdmin(admin.ModelAdmin):
 
     fieldsets = [
               (None,                {'fields': ['id','title','caption','image','photographer']}),
-              ('Tracking',  {'fields':['last_updated_date','creation_date'], 'classes': ['collapse']}),
+              ('śledzenie',  {'fields':['last_updated_date','creation_date'], 'classes': ['collapse']}),
               ]
 
     list_display = ('id','title','caption', 'last_updated_date','creation_date','photographer')

@@ -1,0 +1,18 @@
+{% extends "base_site.html" %}
+
+{% block content %}
+
+<div class="gallery">
+    <img class="gallery_image" src="/media/{{ photo.image }}" />
+</div>
+<div class="gallery_caption">
+    <div class="gallery_caption_inner">
+         <h3>{{ photo.title }}</h3>
+         <p> {{ photo.caption }}</p>
+    </div>
+</div>
+<div class="gallery_navigation">
+    <a href="/galeria/{{ gallery_page }}"> << poprzedni </a>
+</div>
+
+{% endblock %}

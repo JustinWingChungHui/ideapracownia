@@ -1,0 +1,23 @@
+{% extends "base_site.html" %}
+
+
+{% block content %}
+<div class="gallery">
+{%for image in images %}
+    <a href="/galeria/zdjecia/{{ image.id }} ">
+        <img class="gallery_thumbnail" src="/media/{{ image.image }}" />
+    </a>
+{% endfor %}
+</div>
+
+<div class="gallery_navigation">
+{% if show_previous %}
+    <a href="/galeria/{{ previous_page }}"> << poprzedni </a>
+{% endif %}
+| strona {{ page_number }} |
+{% if show_next %}
+    <a href="/galeria/{{ next_page }}"> następny >>  </a>
+{% endif %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,71 @@
+{% load staticfiles %}{% load url from future %}<!DOCTYPE html>
+{% load cache %}
+
+<html lang="{{ LANGUAGE_CODE|default:"pl" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+<head>
+	<title>{% block title %}{% endblock %}</title>
+
+	<link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% static "css/base.css" %}{% endblock %}" />
+	{% block extrastyle %}{% endblock %}
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+	{% block extrahead %}{% endblock %}
+
+	{% block extrascript %}{% endblock %}
+
+	{% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
+
+</head>
+
+<body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}">
+
+<div class="logo">
+	<a href = "/"><img src="{% static "img/logo.png" %}"/></a>
+</div>
+<div class="contact">
+    Tel: 50 123 45 67
+</div>
+
+<!-- Container -->
+<div class="container">
+
+	<!-- {# cache 300 header #} -->
+    <!-- Header -->
+    <div class="header">
+    	<div>
+	        <div id="menu">
+				<ul>
+					{%for page in pages %}
+			         	<li><a href="/{{page.tab_name}}/">{{page.tab_name}}</a></li>
+			         	<li class="menu_separator">|</li>
+			        {% endfor %}
+			        <li><a href="/aktualnosci/">Aktualności</a></li>
+			        <li class="menu_separator">|</li>
+			        <li><a href="/galeria/">Galeria</a></li>
+				</ul>
+	        </div>
+		</div>
+    </div>
+    <!-- END Header -->
+    <!-- {# endcache #} -->
+    <div class="banner">
+        <img src="{% static "img/child.jpg" %}"/>
+    </div>
+    <!-- Content -->
+    <div class="content">
+		{% block subheader %}{% endblock %}
+		{% block content %}{% endblock %}
+    </div>
+    <!-- END Content -->
+
+    {% block footer %}
+    <div class="footer">
+     	Serwis stworzony przez Justin @ <a href="http://www.techluminaire.co.uk">Tech Luminaire</a>
+    </div>
+    {% endblock %}
+</div>
+<!-- END Container -->
+
+</body>
+</html>

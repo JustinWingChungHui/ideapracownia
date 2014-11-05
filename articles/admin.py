@@ -12,7 +12,7 @@ class ArticleAdmin(admin.ModelAdmin):
 
     fieldsets = [
               (None, {'fields': ['id','name','published','header','image','content','author']}),
-              ('Tracking',  {'fields':['last_updated_date','creation_date'], 'classes': ['collapse']}),
+              ('śledzenie',  {'fields':['last_updated_date','creation_date'], 'classes': ['collapse']}),
               ]
 
     list_display = ('id','name','last_updated_date','creation_date','published')
@@ -22,8 +22,16 @@ class ArticleAdmin(admin.ModelAdmin):
 
     formfield_overrides = {
         models.CharField: {'widget': TextInput(attrs={'size':'100'})},
-        models.TextField: {'widget': Textarea(attrs={'rows':50, 'cols':100})},
+        models.TextField: {'widget': Textarea(attrs={'rows':25, 'cols':50})},
     }
+
+    class Media:
+        from django.conf import settings
+        static = settings.STATIC_URL
+        js = (
+            static+'/js/tinymce/tinymce.min.js',
+            static+'/js/editor.js',
+        )
 
     #Auto populates author field with current user
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
