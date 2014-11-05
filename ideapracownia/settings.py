@@ -17,14 +17,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '+z$(gvm1t4krz@k6j&%gy49iaota6-!7oh8(v$@9+jd(fg3cw&'
+SECRET_KEY = '+z$(gvm1t4krz@k6j&%gy49poiuyg-!7oh8(v$@9+jd(fg3cw&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -60,8 +60,12 @@ WSGI_APPLICATION = 'ideapracownia.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        #'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'mysql.connector.django',
+        'NAME': 'justinhui$ideapracownia',
+        'USER': 'justinhui',
+        'PASSWORD': '^5h4u K31 W4n',
+        'HOST': 'mysql.server',
     }
 }
 

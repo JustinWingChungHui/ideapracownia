@@ -30,7 +30,7 @@ class Article(models.Model):
 
         #format name so it can be used for URLs
         import re
-        self.name = re.sub(r'\W+', '', self.name.lower())
+        self.name = re.sub(r'[\W_]+', '', self.name.lower())
         super(Article, self).save(*args, **kwargs)
 
 

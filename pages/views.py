@@ -21,12 +21,12 @@ def index(request,requested_tab_name=None):
 
     try:
         if requested_tab_name is None:
-            requested_tab_name = Page.objects.order_by('sequence')[:1][0]
+            requested_tab_name = Page.objects.order_by('sequence')[:1][0].tab_link
 
         template = loader.get_template('pages/index.html')
         context = RequestContext(request,{
                                       'pages': Page.objects.filter(show_on_menu = 1).order_by('sequence'),
-                                      'page': Page.objects.get(tab_name = requested_tab_name),
+                                      'page': Page.objects.get(tab_link = requested_tab_name),
                                       })
         response = template.render(context)
         return HttpResponse(response)
