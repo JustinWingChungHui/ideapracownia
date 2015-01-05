@@ -28,6 +28,7 @@ def index(request,page_number_text='1'):
         template = loader.get_template('gallery/index.html')
         context = RequestContext(request,{
                                       'pages': Page.objects.filter(show_on_menu = 1).order_by('sequence'),
+                                      'page': Page.objects.get(tab_link = 'galeria'),
                                       'images': Photo.objects.all().order_by('-creation_date')[offset:num_photos_on_page + offset],
                                       'show_previous': (page_number > 1),
                                       'show_next': (page_number < num_pages),
@@ -59,6 +60,7 @@ def single_photo(request,photo_id = 1):
         template = loader.get_template('gallery/single_photo.html')
         context = RequestContext(request,{
                                       'pages': Page.objects.filter(show_on_menu = 1).order_by('sequence'),
+                                      'page': Page.objects.get(tab_link = 'galeria'),
                                       'photo': photo,
                                       'gallery_page': (photo_row_index - 1)  // num_photos_on_page + 1,
                                       })

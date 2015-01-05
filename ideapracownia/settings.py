@@ -20,9 +20,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = '+z$(gvm1t4krz@k6j&%gy49poiuyg-!7oh8(v$@9+jd(fg3cw&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-TEMPLATE_DEBUG = False
+TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -60,13 +60,18 @@ WSGI_APPLICATION = 'ideapracownia.wsgi.application'
 
 DATABASES = {
     'default': {
-        #'ENGINE': 'django.db.backends.mysql',
-        'ENGINE': 'mysql.connector.django',
-        'NAME': 'justinhui$ideapracownia',
-        'USER': 'justinhui',
-        'PASSWORD': '^5h4u K31 W4n',
-        'HOST': 'mysql.server',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+
+    #'default': {
+    #    'ENGINE': 'django.db.backends.mysql',
+    #   #'ENGINE': 'mysql.connector.django',
+    #    'NAME': 'justinhui$ideapracownia',
+    #    'USER': 'justinhui',
+    #    'PASSWORD': '^5h4u K31 W4n',
+    #    'HOST': 'mysql.server',
+    #}
 }
 
 # Internationalization

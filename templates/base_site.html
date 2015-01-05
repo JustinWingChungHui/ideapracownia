@@ -1,14 +1,14 @@
 {% load staticfiles %}{% load url from future %}<!DOCTYPE html>
 {% load cache %}
 
-<html lang="{{ LANGUAGE_CODE|default:"pl" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+<html lang="{{ LANGUAGE_CODE|default:"en" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
 <head>
 	<title>{% block title %}{% endblock %}</title>
 
 	<link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% static "css/base.css" %}{% endblock %}" />
 	{% block extrastyle %}{% endblock %}
 
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 	{% block extrahead %}{% endblock %}
 
@@ -23,8 +23,12 @@
 <div class="logo">
 	<a href = "/"><img src="{% static "img/logo.png" %}"/></a>
 </div>
-<div class="contact">
-    Tel: 50 123 45 67
+<div class="title">
+    <div class="title_text">
+        <h3>PRACOWNIA TERAPEUTYCZNA</h3>
+    </div>
+    <div class="title_underline">
+    </div>
 </div>
 
 <!-- Container -->
@@ -36,13 +40,19 @@
     	<div>
 	        <div id="menu">
 				<ul>
-					{%for page in pages %}
-			         	<li><a href="/{{page.tab_link}}/">{{page.tab_name}}</a></li>
+					{%for p in pages %}
+					    {% if page.id == p.id %}
+			         	    <li><a style="color: yellow;" href="/{{p.tab_link}}/">{{p.tab_name}}</a></li>
+			            {% else %}
+			                <li><a href="/{{p.tab_link}}/">{{p.tab_name}}</a></li>
+			            {% endif %}
 			         	<li class="menu_separator">|</li>
 			        {% endfor %}
+			        <!--
 			        <li><a href="/aktualnosci/">Aktualności</a></li>
 			        <li class="menu_separator">|</li>
 			        <li><a href="/galeria/">Galeria</a></li>
+			        -->
 				</ul>
 	        </div>
 		</div>

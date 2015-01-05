@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.template import RequestContext, loader
 from pages.models import Page
 
+
 def page_not_found(request):
     '''
     Default page not found view
@@ -33,3 +34,11 @@ def index(request,requested_tab_name=None):
 
     except:
         return page_not_found(request)
+
+
+def django_version(request):
+    '''
+    Debugging the django version
+    '''
+    import django
+    return HttpResponse(django.VERSION)

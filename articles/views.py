@@ -27,6 +27,7 @@ def index(request,page_number_text = '1'):
         template = loader.get_template('articles/index.html')
         context = RequestContext(request,{
                                       'pages': Page.objects.filter(show_on_menu = 1).order_by('sequence'),
+                                      'page': Page.objects.get(tab_link = 'aktualności'),
                                       'articles': Article.objects.filter(published = True).order_by('-creation_date')[offset:num_article_stubs_per_page + offset],
                                       'show_previous': (page_number > 1),
                                       'show_next': (page_number < num_pages),
@@ -51,6 +52,7 @@ def single_article(request, article_name):
         template = loader.get_template('articles/article.html')
         context = RequestContext(request,{
                                   'pages': Page.objects.filter(show_on_menu = 1).order_by('sequence'),
+                                  'page': Page.objects.get(tab_link = 'aktualności'),
                                   'article': Article.objects.get(name = article_name),
                                   })
 
